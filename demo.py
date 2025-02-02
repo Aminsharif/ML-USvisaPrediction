@@ -2,10 +2,7 @@ from us_visa.logger import logging
 from us_visa.exception import USvisaException
 import sys
 
-logging.info("Welcome to our visa project")
+from us_visa.pipline.training_pipeline import TrainPipeline
 
-try:
-    a=10
-    a/0
-except Exception as e:
-    raise USvisaException(e, sys)
+obj = TrainPipeline()
+obj.run_pipeline()
