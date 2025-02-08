@@ -9,7 +9,7 @@ from us_visa.exception import USvisaException
 from us_visa.logger import logging
 from us_visa.utils.main_utils import read_yaml_file
 from pandas import DataFrame
-from us_visa.entity.config_entity import ModelTrainerConfig
+from us_visa.entity.config_entity import ModelTrainerConfig, LocalModelPusherConfig
 import joblib
 
 class USvisaData:
@@ -119,13 +119,13 @@ class USvisaClassifier:
             raise USvisaException(e, sys)
         
 class USvisaClassifierWithLocalModel:
-    def __init__(self,model_trainer_artifact: ModelTrainerConfig = ModelTrainerConfig()) -> None:
+    def __init__(self,local_model_pusher: LocalModelPusherConfig = LocalModelPusherConfig()) -> None:
         """
         :param prediction_pipeline_config: Configuration for prediction the value
         """
         try:
             # self.schema_config = read_yaml_file(SCHEMA_FILE_PATH)
-            self.model_trainer_artifact = model_trainer_artifact
+            self.local_model_pusher_artifact = local_model_pusher
         except Exception as e:
             raise USvisaException(e, sys)
 
@@ -137,7 +137,7 @@ class USvisaClassifierWithLocalModel:
         """
         try:
             logging.info("Entered predict method of USvisaClassifier class")
-            model = joblib.load(self.model_trainer_artifact.trained_model_file_path)
+            model = joblib.load(self.local_model_pusher_artifact.model_key_path)
             result =  model.predict(dataframe)
             
             return result
