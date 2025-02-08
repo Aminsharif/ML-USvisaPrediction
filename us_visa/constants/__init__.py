@@ -18,6 +18,7 @@ TEST_FILE_NAME: str = "test.csv"
 
 FILE_NAME: str = "usvisa.csv"
 MODEL_FILE_NAME = "model.pkl"
+MODEL_DIR: str = "model"
 
 
 TARGET_COLUMN = "case_status"
@@ -69,6 +70,7 @@ MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"
 MODEL_TRAINER_TRAINED_MODEL_NAME: str = "model.pkl"
 MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
 MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config", "model.yaml")
+
 
 
 """

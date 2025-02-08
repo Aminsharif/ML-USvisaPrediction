@@ -69,12 +69,21 @@ class ModelEvaluationConfig:
     bucket_name: str = MODEL_BUCKET_NAME
     s3_model_key_path: str = MODEL_FILE_NAME
 
+@dataclass
+class LocalModelEvaluationConfig:
+    changed_threshold_score: float = MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
+    local_model_path: str = os.path.join(MODEL_DIR, MODEL_FILE_NAME)
 
 
 @dataclass
 class ModelPusherConfig:
     bucket_name: str = MODEL_BUCKET_NAME
     s3_model_key_path: str = MODEL_FILE_NAME
+
+
+@dataclass
+class LocalModelPusherConfig:
+    model_key_path: str = os.path.join(MODEL_DIR, MODEL_FILE_NAME)
 
 
 
